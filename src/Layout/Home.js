@@ -11,17 +11,15 @@ import { loginAtom, profileAtom } from "../Atoms";
 import { useAtom } from "jotai";
 function Home() {
   const [loginn, setLogin] = useAtom(loginAtom);
-  const [profile, setProfile] = useAtom(profileAtom);
 
   const navigate = useNavigate();
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       console.log(tokenResponse);
-      navigate("/dashboard");
+      navigate("/");
       setLogin(true);
     },
   });
-
 
   const [dataa, setData] = useState();
   const data = {
@@ -112,6 +110,7 @@ function Home() {
                     boxShadow: "none",
                   }}
                   onClick={() => login()}
+                  cursor="pointer"
                 >
                   Get Started
                 </Button>
@@ -133,6 +132,7 @@ function Home() {
                   _focus={{
                     boxShadow: "none",
                   }}
+                  cursor="pointer"
                 >
                   Pricing
                 </Button>
@@ -176,6 +176,7 @@ function Home() {
                 transform: "scale(1.05)",
                 transition: "transform 0.5s",
               }}
+              cursor="pointer"
             >
               <FaGithub size={32} color="white" />
               <Text color="white" fontSize={["sm", "md"]} fontWeight={200}>
@@ -189,6 +190,7 @@ function Home() {
                 transform: "scale(1.05)",
                 transition: "transform 0.5s",
               }}
+              cursor="pointer"
             >
               <FaTwitter size={32} color="white" />
               <Text color="white" fontSize={["sm", "md"]} fontWeight={200}>

@@ -1,10 +1,13 @@
 import { Box, Flex, Text, Input, Textarea, Button } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import { cardSelectedAtom } from "../Atoms";
+import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 
 function Prompt() {
   const [selectedCard, setSelectedCard] = useAtom(cardSelectedAtom);
-  console.log(selectedCard);
+  const location = useLocation();
+
   const secondInput = [
     "Follow-up Messages",
     "Career Advisor",
@@ -46,7 +49,24 @@ function Prompt() {
               : subtext[selectedCard]}
           </Text>
         </Flex>
-        <Button bg="#90278E" color="white" px={6} fontSize="auto">
+        <Button
+          bg="#90278E"
+          color="white"
+          px={6}
+          fontSize="auto"
+          _hover={{
+            transform: "scale(1.05)",
+            transition: "transform 0.5s",
+          }}
+          _active={{
+            bg: "#994F86",
+            transform: "none",
+            borderColor: "transparent",
+          }}
+          _focus={{
+            boxShadow: "none",
+          }}
+        >
           Generate
         </Button>
       </Flex>
@@ -56,7 +76,7 @@ function Prompt() {
         minH="40vh"
         backgroundImage="radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.16), rgba(155, 155, 155, 0.1))"
         mt={4}
-        placeholder="Enter your input here"
+        autoFocus
         size="lg"
         border="none"
         _focus={{
@@ -77,7 +97,6 @@ function Prompt() {
             minH="20vh"
             backgroundImage="radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.16), rgba(155, 155, 155, 0.1))"
             mt={4}
-            placeholder="Enter your second input here"
             size="lg"
             border="none"
             _focus={{

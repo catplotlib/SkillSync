@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, VStack, Text, Button, HStack, SlideFade } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useAtom } from "jotai";
 import { cardSelectedAtom } from "../Atoms";
+import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate
 
 function CustomDropdown() {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   const [selectedCard, setSelectedCard] = useAtom(cardSelectedAtom);
   const [isOpen, setIsOpen] = useState(true);
   const features = [
@@ -18,6 +21,16 @@ function CustomDropdown() {
     "Career Progression",
     "Follow-up Messages",
   ];
+  const location = useLocation(); // Add this line
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setSelectedCard(null);
+    } else {
+      const selectedFromURL = location.pathname.substring(1).replace(/-/g, " ");
+      setSelectedCard(selectedFromURL);
+    }
+  }, [location.pathname]);
 
   return (
     <Box>
@@ -43,7 +56,7 @@ function CustomDropdown() {
           <ChevronDownIcon />
         </HStack>
       </Button>
-      <SlideFade in={isOpen} offsetY="20px" >
+      <SlideFade in={isOpen} offsetY="20px">
         <VStack
           spacing={2}
           bg="transparent"
@@ -72,7 +85,12 @@ function CustomDropdown() {
               _focus={{
                 boxShadow: "none",
               }}
-              onClick={() => setSelectedCard(feature)}
+              onClick={() => {
+                setSelectedCard(feature);
+                navigate(
+                  `/${features[index % features.length].replace(/\s/g, "-")}`
+                );
+              }}
               cursor="pointer"
             >
               {feature}

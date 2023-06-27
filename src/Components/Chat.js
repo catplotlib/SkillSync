@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import Prompt from "./Prompt";
 import Output from "./Output";
@@ -32,12 +32,7 @@ function Chat() {
   const displayText = cardTextMap[selectedCard];
 
   return (
-    <Flex
-      direction="column"
-      px={[8, 12, 12]}
-      w="100%"
-      color="white"
-    >
+    <Flex direction="column" px={[8, 12, 12]} w="100%" color="white">
       <Flex direction="column" borderBottom="2px solid #994F86" w="100%" pb={4}>
         <Text fontSize="2xl">{selectedCard}</Text>
         <Text>{displayText}</Text>

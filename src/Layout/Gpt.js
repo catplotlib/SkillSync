@@ -9,7 +9,7 @@ import { cardSelectedAtom, loginAtom } from "../Atoms";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 
-function Dashboard() {
+function Gpt() {
   const [selectedCard, setSelectedCard] = useAtom(cardSelectedAtom);
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,30 +30,17 @@ function Dashboard() {
     return () => clearTimeout(timer);
   }, []);
 
-  return isLoading ? (
-    <Flex justify="center" alignItems="center" h="100vh">
-      <ThreeDots
-        height="80"
-        width="80"
-        radius="9"
-        color="#994F86"
-        ariaLabel="three-dots-loading"
-        wrapperStyle={{}}
-        wrapperClassName=""
-        visible={true}
-      />
-    </Flex>
-  ) : (
+  return (
     <Flex direction="row">
       <LeftSideContent />
       <Flex direction="column" justify="flex-start" flexGrow={1}>
         <Flex justify="flex-end">
           <NavbarHero />
         </Flex>
-        <RightSideContent />
+        <Chat />
       </Flex>
     </Flex>
   );
 }
 
-export default Dashboard;
+export default Gpt;

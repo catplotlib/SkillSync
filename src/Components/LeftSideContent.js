@@ -3,19 +3,21 @@ import { Flex, Button, Text } from "@chakra-ui/react";
 import Dropdown from "../Components/Dropdown";
 import { useAtom } from "jotai";
 import { cardSelectedAtom } from "../Atoms";
+import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate
 
 function LeftSideContent() {
   const [selectedCard, setSelectedCard] = useAtom(cardSelectedAtom);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   return (
     <Flex
-    display={["none", "none", "flex"]}
+      display={["none", "none", "flex"]}
       py={[2, 4, 6]}
       px={[2, 4, 12]}
       direction="column"
       alignItems="center"
       w="25%"
-      h="100vh"
+      h="105vh"
       bg="radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.16), rgba(155, 155, 155, 0.1))"
       gap={10}
     >
@@ -47,7 +49,10 @@ function LeftSideContent() {
           _focus={{
             boxShadow: "none",
           }}
-          onClick={() => setSelectedCard(null)}
+          onClick={() => {
+            setSelectedCard(null);
+            navigate(`/`);
+          }}
         >
           Home
         </Button>

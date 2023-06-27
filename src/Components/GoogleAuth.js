@@ -7,7 +7,7 @@ const GoogleAuth = () => {
 
     const onSuccess = (credentialResponse) => {
         console.log(credentialResponse);
-        navigate("/dashboard");
+        navigate("/");
     };
 
     const onError = () => {

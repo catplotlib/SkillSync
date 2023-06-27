@@ -10,7 +10,7 @@ import { FaChalkboardTeacher } from "react-icons/fa";
 import { GoGraph } from "react-icons/go";
 import { useAtom } from "jotai";
 import { cardSelectedAtom } from "../Atoms";
-import { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate
 const icons = [
   <SlEnvolopeLetter size={50} />,
   <VscSymbolKeyword size={50} />,
@@ -36,22 +36,11 @@ const features = [
 
 function RightSideContent() {
   const [selectedCard, setSelectedCard] = useAtom(cardSelectedAtom);
-  // Set up event listener on component mount
-  useEffect(() => {
-    const handlePopState = () => {
-      setSelectedCard(null);
-    };
+  const navigate = useNavigate(); // Initialize useNavigate
 
-    window.addEventListener("popstate", handlePopState);
-
-    // Clean up event listener on component unmount
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, [setSelectedCard]);
   return (
-    <Flex px={[8, 12, 24]} direction="column">
-      <Text fontSize={["md", "xl", "3xl"]} color="white">
+    <Flex px={[8, 12, 24]} direction="column" pb={[6,2,2]}>
+      <Text fontSize={["xl", "xl", "3xl"]} fontWeight={600} color="white" mb={[2,4,6]}>
         Tools
       </Text>
       <Grid
@@ -76,7 +65,12 @@ function RightSideContent() {
               justify="center"
               alignItems="center"
               gap={2}
-              onClick={() => setSelectedCard(features[i % features.length])}
+              onClick={() => {
+                setSelectedCard(features[i % features.length]);
+                navigate(
+                  `/${features[i % features.length].replace(/\s/g, "-")}`
+                );
+              }}
             >
               <Box
                 h={[12, 16, 28]}
