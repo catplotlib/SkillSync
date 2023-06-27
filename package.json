@@ -15,7 +15,6 @@
     "jotai": "^2.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-google-login": "^5.2.2",
     "react-icons": "^4.10.1",
     "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.14.0",

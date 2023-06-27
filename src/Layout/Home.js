@@ -17,8 +17,6 @@ function Home() {
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       console.log(tokenResponse);
-      const profileImage = tokenResponse.profileObj.imageUrl;
-      setProfile(profileImage);
       navigate("/dashboard");
       setLogin(true);
     },
