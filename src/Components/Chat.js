@@ -25,8 +25,8 @@ function Chat() {
       "Offers personalized guidance on career paths based on your resume.",
     "Career Progression":
       "Visualize potential career paths based on your current profile.",
-    "Follow-up Messages":
-      "Draft personalized follow-up messages for job applications.",
+    "Followup Messages":
+      "Draft personalized Followup messages for job applications.",
   };
 
   const displayText = cardTextMap[selectedCard];

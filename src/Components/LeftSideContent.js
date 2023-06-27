@@ -12,12 +12,13 @@ function LeftSideContent() {
   return (
     <Flex
       display={["none", "none", "flex"]}
-      py={[2, 4, 6]}
+      py={[2, 8, 12]}
       px={[2, 4, 12]}
       direction="column"
       alignItems="center"
       w="25%"
-      h="105vh"
+      minh="105vh"
+      h="auto"
       bg="radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.16), rgba(155, 155, 155, 0.1))"
       gap={10}
     >

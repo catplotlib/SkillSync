@@ -31,7 +31,7 @@ const features = [
   "Grammar Checker",
   "Career Advisor",
   "Career Progression",
-  "Follow-up Messages",
+  "Followup Messages",
 ];
 
 function RightSideContent() {

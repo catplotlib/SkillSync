@@ -9,26 +9,26 @@ function Prompt() {
   const location = useLocation();
 
   const secondInput = [
-    "Follow-up Messages",
+    "Followup Messages",
     "Career Advisor",
     "Job Description Matcher",
   ];
   const subtext = {
-    "Cover Letter Generator": "Paste in your resume",
+    "Cover Letter Generator": "Paste in your Resume",
     "Keyword Optimizer": "Paste in the Job Description",
-    "Bullet points optimizer": "Paste in your resume bullet point",
+    "Bullet points optimizer": "Paste in your Resume bullet point",
     "Phrase Suggestions": "What career are you interested in?",
     "Job Description Matcher": [
-      "Paste in the Job Description",
       "Paste in your Resume",
+      "Paste in the Job Description",
     ],
-    "Grammar Checker": ["Paste in your resume"],
+    "Grammar Checker": ["Paste in your Resume"],
     "Career Advisor": [
-      "Paste in your resume",
+      "Paste in your Resume",
       "What career do you want to pursue?",
     ],
-    "Career Progression": "Paste in your resume",
-    "Follow-up Messages": [
+    "Career Progression": "Paste in your Resume",
+    "Followup Messages": [
       "Paste in the Job Description",
       "Paste in your Resume",
     ],
@@ -45,7 +45,7 @@ function Prompt() {
           <Text fontSize={"2xl"}>Prompt</Text>
           <Text fontSize={"auto"}>
             {secondInput.includes(selectedCard)
-              ? subtext[selectedCard]
+              ? subtext[selectedCard][0]
               : subtext[selectedCard]}
           </Text>
         </Flex>
@@ -89,7 +89,9 @@ function Prompt() {
       />
       {secondInput.includes(selectedCard) && (
         <Flex direction="column" w="89%">
-          <Text fontSize={"auto"}>{subtext[selectedCard][1]}</Text>
+          <Text fontSize={"auto"} mt={2}>
+            {subtext[selectedCard][1]}
+          </Text>
 
           <Textarea
             w="100%"

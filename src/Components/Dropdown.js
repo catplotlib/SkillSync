@@ -19,7 +19,7 @@ function CustomDropdown() {
     "Grammar Checker",
     "Career Advisor",
     "Career Progression",
-    "Follow-up Messages",
+    "Followup Messages",
   ];
   const location = useLocation(); // Add this line
 
