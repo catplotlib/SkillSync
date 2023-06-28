@@ -11,3 +11,4 @@ export const emailAtom = atomWithStorage(null);
 export const outputAtom = atom(null);
 export const generateAtom = atom(false);
 export const isLoadingAtom = atom(false);
+export const nameAtom=atomWithStorage('');

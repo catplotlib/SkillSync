@@ -7,14 +7,14 @@ import { FaGithub, FaTwitter } from "react-icons/fa";
 import { LuBrainCircuit } from "react-icons/lu";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
-import { loginAtom, access_tokenAtom, emailAtom, outputAtom } from "../Atoms";
+import { loginAtom, access_tokenAtom, emailAtom, outputAtom ,nameAtom} from "../Atoms";
 import { useAtom } from "jotai";
 
 function Home() {
   const [loginn, setLogin] = useAtom(loginAtom);
-  const [access_token, setAccessToken] = useAtom(access_tokenAtom);
+  const [pic, setPic] = useAtom(access_tokenAtom);
   const [email, setEmail] = useAtom(emailAtom);
-  const [output, setOutput] = useAtom(outputAtom);
+  const [name, setName] = useAtom(nameAtom);
 
   const navigate = useNavigate();
 
@@ -28,6 +28,8 @@ function Home() {
           },
         })
         .then((response) => {
+          console.log(response);
+          setName(response.data.picture);
           setEmail(response.data.email);
         })
         .catch((error) => {
@@ -61,7 +63,6 @@ function Home() {
       setLogin(true);
     },
   });
-
 
   return (
     <Flex direction="column" alignItems="center" w="100%">
@@ -177,34 +178,38 @@ function Home() {
           </Button>
 
           <Flex mt={[4]} gap={6} mb={[12]}>
-            <Flex
-              alignItems="center"
-              gap={3}
-              _hover={{
-                transform: "scale(1.05)",
-                transition: "transform 0.5s",
-              }}
-              cursor="pointer"
-            >
-              <FaGithub size={32} color="white" />
-              <Text color="white" fontSize={["sm", "md"]} fontWeight={200}>
-                Github
-              </Text>
-            </Flex>
-            <Flex
-              alignItems="center"
-              gap={3}
-              _hover={{
-                transform: "scale(1.05)",
-                transition: "transform 0.5s",
-              }}
-              cursor="pointer"
-            >
-              <FaTwitter size={32} color="white" />
-              <Text color="white" fontSize={["sm", "md"]} fontWeight={200}>
-                Twitter
-              </Text>
-            </Flex>
+            <a href="https://github.com/catplotlib/SkillSync" target="_blank">
+              <Flex
+                alignItems="center"
+                gap={3}
+                _hover={{
+                  transform: "scale(1.05)",
+                  transition: "transform 0.5s",
+                }}
+                cursor="pointer"
+              >
+                <FaGithub size={32} color="white" />
+                <Text color="white" fontSize={["sm", "md"]} fontWeight={200}>
+                  Github
+                </Text>
+              </Flex>
+            </a>
+            <a href="https://twitter.com/catplotlib" target="_blank">
+              <Flex
+                alignItems="center"
+                gap={3}
+                _hover={{
+                  transform: "scale(1.05)",
+                  transition: "transform 0.5s",
+                }}
+                cursor="pointer"
+              >
+                <FaTwitter size={32} color="white" />
+                <Text color="white" fontSize={["sm", "md"]} fontWeight={200}>
+                  Twitter
+                </Text>
+              </Flex>
+            </a>
           </Flex>
         </Flex>
 

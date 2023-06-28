@@ -23,7 +23,7 @@ function LeftSideContent() {
       gap={10}
     >
       <Text color="white" fontSize={["md", "3xl", "3xl"]}>
-        Resume.ai
+        SkillSync.ai
       </Text>
       <Flex
         direction="column"
@@ -57,7 +57,7 @@ function LeftSideContent() {
         >
           Home
         </Button>
-        <Button
+        {/* <Button
           bg="transparent"
           color="white"
           border="1px solid #994F86"
@@ -77,7 +77,7 @@ function LeftSideContent() {
           }}
         >
           Your Plan
-        </Button>
+        </Button> */}
       </Flex>
 
       <Dropdown />

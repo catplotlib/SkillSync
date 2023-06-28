@@ -1,12 +1,21 @@
 import React from "react";
-import { Flex, Text, Button, Box } from "@chakra-ui/react";
+import { Flex, Text, Button, Image } from "@chakra-ui/react";
 import { useAtom } from "jotai";
-import { cardSelectedAtom, loginAtom } from "../Atoms";
+import {
+  cardSelectedAtom,
+  loginAtom,
+  outputAtom,
+  access_tokenAtom,
+  nameAtom
+} from "../Atoms";
 import { googleLogout } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 function Navbar() {
   const [selectedCard, setSelectedCard] = useAtom(cardSelectedAtom);
   const [login, setLogin] = useAtom(loginAtom);
+  const [output, setOutput] = useAtom(outputAtom);
+  const [pic, setPic] = useAtom(access_tokenAtom);
+  const [name, setName] = useAtom(nameAtom);
 
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -18,6 +27,7 @@ function Navbar() {
       console.log("Logout Failed", error);
     }
   };
+  console.log(name);
   return (
     <Flex
       bgColor="transparent"
@@ -34,13 +44,14 @@ function Navbar() {
         alignItems="center"
         justify="center"
       >
-        <Box
-          borderRadius="50%"
-          h={10}
-          w={10}
-          bg="#90278E"
+        <Image
+          borderRadius="full"
+          boxSize="10"
+          src={name}
+          alt="Profile picture"
           mb={{ base: 4, md: 0 }}
-        ></Box>
+        />
+        {/* <Text>Hi {name}</Text> */}
         <Button
           background="radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.16), rgba(155, 155, 155, 0.1))"
           color="white"
@@ -62,6 +73,7 @@ function Navbar() {
           }}
           onClick={() => {
             setSelectedCard(null);
+            setOutput(null);
             navigate(`/`);
           }}
         >

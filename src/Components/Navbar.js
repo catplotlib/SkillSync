@@ -13,13 +13,13 @@ function Navbar() {
       direction={["column", "row"]}
     >
       <Text color="white" fontSize={["4xl"]}>
-        Resume.ai
+        SkillSync.ai
       </Text>
-      <Flex direction={["row"]} gap={[12, 6]}>
+      {/* <Flex direction={["row"]} gap={[12, 6]}>
         <Text color="white">Follow</Text>
         <Text color="white">Pricing</Text>
         <Text color="white">Sign In</Text>
-      </Flex>
+      </Flex> */}
     </Flex>
   );
 }
