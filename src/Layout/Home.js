@@ -35,7 +35,7 @@ function Home() {
         .catch((error) => {
           console.error(error);
         });
-      axios.get(`http://localhost:8000/api/jobapplications/`).then((res) => {
+      axios.get(`https://skillsync.pythonanywhere.com/api/jobapplications/`).then((res) => {
         let userExists = res.data.some((application) => {
           return application.my_id === email;
         });
@@ -50,7 +50,7 @@ function Home() {
         };
         if (!userExists) {
           axios
-            .post(`http://localhost:8000/api/jobapplications/`, data)
+            .post(`https://skillsync.pythonanywhere.com/api/jobapplications/`, data)
             .then((response) => {
               console.log(response);
             })

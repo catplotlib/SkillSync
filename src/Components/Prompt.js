@@ -70,7 +70,7 @@ function Prompt() {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/jobapplications/`).then((res) => {
+    axios.get(`https://skillsync.pythonanywhere.com/api/jobapplications/`).then((res) => {
       const matchedData = res.data.find((item) => item.my_id === email);
       if (matchedData) {
         setResume(matchedData.resume);
@@ -96,12 +96,12 @@ function Prompt() {
     setIsLoading(true);
     // First, get all job applications
     axios
-      .post(`http://localhost:8000/api/jobapplications/`, data)
+      .post(`https://skillsync.pythonanywhere.com/api/jobapplications/`, data)
       .then((res) => {
         console.log(res.data);
       })
       .then(() => {
-        axios.get(`http://localhost:8000/api/jobapplications/`).then((res) => {
+        axios.get(`https://skillsync.pythonanywhere.com/api/jobapplications/`).then((res) => {
           // Find the job application with the matching email
           const jobApplication = res.data.find(
             (entry) => entry.my_id === email
@@ -114,15 +114,15 @@ function Prompt() {
             // Now that we have the ID, we can make a POST request to the process_feature endpoint
             return axios
               .post(
-                `http://localhost:8000/api/jobapplications/${jobApplication.id}/process_feature/`,
+                `https://skillsync.pythonanywhere.com/api/jobapplications/${jobApplication.id}/process_feature/`,
                 data
               )
               .then((res) => {
                 console.log(
-                  `http://localhost:8000/api/jobapplications/${jobApplication.id}/process_feature/`
+                  `https://skillsync.pythonanywhere.com/api/jobapplications/${jobApplication.id}/process_feature/`
                 );
                 return axios.get(
-                  `http://localhost:8000/api/jobapplications/${jobApplication.id}/process_feature/`
+                  `https://skillsync.pythonanywhere.com/api/jobapplications/${jobApplication.id}/process_feature/`
                 );
               })
               .then((res) => {
