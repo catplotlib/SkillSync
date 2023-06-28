@@ -2,6 +2,9 @@
 
 SkillSync is a web application that helps users synchronize their skills with job descriptions. It provides an interface to input a resume and a job description, then uses machine learning to match and rank the resume's skills against those required by the job. The primary technologies used in this project are React, Chakra UI, Django, and OpenAI API.
 
+## Link to WebApp: 
+https://skillsync.netlify.app/
+
 ## Architecture
 
 The application is structured using React for the front-end user interface and Django for the back-end. Chakra UI is used to style the React components and OpenAI API is used to enable machine learning capabilities.
