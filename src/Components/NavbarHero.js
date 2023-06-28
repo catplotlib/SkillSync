@@ -4,11 +4,9 @@ import { useAtom } from "jotai";
 import { cardSelectedAtom, loginAtom } from "../Atoms";
 import { googleLogout } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
-import { profileAtom } from "../Atoms";
 function Navbar() {
   const [selectedCard, setSelectedCard] = useAtom(cardSelectedAtom);
   const [login, setLogin] = useAtom(loginAtom);
-  const [profile, setProfile] = useAtom(profileAtom);
 
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -62,7 +60,10 @@ function Navbar() {
           _focus={{
             boxShadow: "none",
           }}
-          onClick={() => setSelectedCard(null)}
+          onClick={() => {
+            setSelectedCard(null);
+            navigate(`/`);
+          }}
         >
           Home
         </Button>

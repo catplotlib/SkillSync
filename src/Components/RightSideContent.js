@@ -28,7 +28,7 @@ const features = [
   "Bullet points optimizer",
   "Phrase Suggestions",
   "Job Description Matcher",
-  "Grammar Checker",
+  "Industry Experts to follow",
   "Career Advisor",
   "Career Progression",
   "Followup Messages",

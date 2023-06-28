@@ -7,52 +7,61 @@ import { FaGithub, FaTwitter } from "react-icons/fa";
 import { LuBrainCircuit } from "react-icons/lu";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
-import { loginAtom, profileAtom } from "../Atoms";
+import { loginAtom, access_tokenAtom, emailAtom, outputAtom } from "../Atoms";
 import { useAtom } from "jotai";
+
 function Home() {
   const [loginn, setLogin] = useAtom(loginAtom);
+  const [access_token, setAccessToken] = useAtom(access_tokenAtom);
+  const [email, setEmail] = useAtom(emailAtom);
+  const [output, setOutput] = useAtom(outputAtom);
 
   const navigate = useNavigate();
+
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
-      console.log(tokenResponse);
+      // setAccessToken(tokenResponse.access_token);
+      axios
+        .get("https://www.googleapis.com/oauth2/v3/userinfo", {
+          headers: {
+            Authorization: `Bearer ${tokenResponse.access_token}`,
+          },
+        })
+        .then((response) => {
+          setEmail(response.data.email);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      axios.get(`http://localhost:8000/api/jobapplications/`).then((res) => {
+        let userExists = res.data.some((application) => {
+          return application.my_id === email;
+        });
+
+        const data = {
+          my_id: email,
+          feature_number: 1,
+          resume: "",
+          job_description: "",
+          career: "",
+          bullet: "",
+        };
+        if (!userExists) {
+          axios
+            .post(`http://localhost:8000/api/jobapplications/`, data)
+            .then((response) => {
+              console.log(response);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
+      });
       navigate("/");
       setLogin(true);
     },
   });
 
-  const [dataa, setData] = useState();
-  const data = {
-    my_id: 1,
-    feature_number: 8,
-    resume: ` Puja Chaudhury
-    Boston | chaudhury.p@northeastern.edu | linkedin | +18573132855 | pujachaudhury.in | Technical Blog
-    As a Software Engineer with 2 years under my belt, I've mastered Python and cultivated a deep passion for Data Science, backed by a solid foundation in Machine Learning. My contributions to the field include 2 published papers at IEEE conferences, 15+ Technical Blogs contributions during my internships and numerous open source projects in the field of Image Processing, Natural Language Processing and Data analysis.
-    Skills
-    Programming Languages: Python, C++, R, Javascript, Matlab, Typescript
-    Data Science Tools: SQL, Jupyter Notebook, NumPy, Pandas, Scikit-learn, TensorFlow, PyTorch, Matplotlib, Seaborn,PowerBI, Excel,, AWS, Azure, Docker`,
-
-    job_description: `The Factory Software team is at the forefront of building a consistent and distributed computing environment for the manufacturing world at Tesla. This team is responsible for building a supporting infrastructure for Tesla’s future products and to enable our manufacturing operations to grow at ludicrous speeds. Tesla is seeking a Front-End Software Engineer to join our team's mission in building the next generation of manufacturing solutions.`,
-    career: `Software Engineer`,
-    // Add other fields needed for a JobApplication, like 'resume', 'job_description', etc.
-  };
-  const handleOnClick = () => {
-    axios.post(`http://localhost:8000/api/jobapplications/`, data);
-  };
-  // useEffect(() => {
-  //   axios
-  //     .post(
-  //       `http://localhost:8000/api/jobapplications/1/process_feature/`,
-  //       data
-  //     )
-  //     .then((response) => {
-  //       setData(response.data);
-  //       console.log(response.data.result); // This will log the response data in your console.
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
 
   return (
     <Flex direction="column" alignItems="center" w="100%">
@@ -120,7 +129,6 @@ function Home() {
                   border="1px solid white"
                   color="white"
                   _hover={{
-                    // bg: "linear-gradient(90deg, #3398bf 0%, #990f93 100%)",
                     transform: "scale(1.05)",
                     transition: "transform 0.5s",
                   }}

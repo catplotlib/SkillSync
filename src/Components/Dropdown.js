@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box, VStack, Text, Button, HStack, SlideFade } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useAtom } from "jotai";
-import { cardSelectedAtom } from "../Atoms";
+import { cardSelectedAtom, outputAtom } from "../Atoms";
 import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate
 
 function CustomDropdown() {
@@ -10,13 +10,14 @@ function CustomDropdown() {
 
   const [selectedCard, setSelectedCard] = useAtom(cardSelectedAtom);
   const [isOpen, setIsOpen] = useState(true);
+  const [output, setOutput] = useAtom(outputAtom);
   const features = [
     "Cover Letter Generator",
     "Keyword Optimizer",
     "Bullet points optimizer",
     "Phrase Suggestions",
     "Job Description Matcher",
-    "Grammar Checker",
+    "Industry Experts to follow",
     "Career Advisor",
     "Career Progression",
     "Followup Messages",

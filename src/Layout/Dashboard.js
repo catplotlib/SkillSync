@@ -30,6 +30,9 @@ function Dashboard() {
     return () => clearTimeout(timer);
   }, []);
 
+
+    
+
   return isLoading ? (
     <Flex justify="center" alignItems="center" h="100vh">
       <ThreeDots

@@ -1,5 +1,13 @@
 import { atom } from "jotai";
-import { atomWithStorage } from 'jotai/utils';
+import { atomWithStorage } from "jotai/utils";
 export const cardSelectedAtom = atom(null);
 export const loginAtom = atomWithStorage(false);
-export const profileAtom = atom(null);
+export const resumeAtom = atom(null);
+export const jobDescriptionAtom = atom(null);
+export const careerAtom = atom(null);
+export const bulletAtom = atom(null);
+export const access_tokenAtom = atomWithStorage(null);
+export const emailAtom = atomWithStorage(null);
+export const outputAtom = atom(null);
+export const generateAtom = atom(false);
+export const isLoadingAtom = atom(false);

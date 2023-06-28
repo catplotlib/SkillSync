@@ -19,7 +19,7 @@ function Chat() {
       "Provides industry-specific phrases to tailor your resume to desired roles.",
     "Job Description Matcher":
       "Tailors your resume to align with specific job requirements.",
-    "Grammar Checker":
+    "Industry Experts to follow":
       "A grammar and spelling checker to ensure your resume is error-free.",
     "Career Advisor":
       "Offers personalized guidance on career paths based on your resume.",
