@@ -20,7 +20,7 @@ function Chat() {
     "Job Description Matcher":
       "Tailors your resume to align with specific job requirements.",
     "Industry Experts to follow":
-      "A grammar and spelling checker to ensure your resume is error-free.",
+      "Provides a list of industry experts to follow.",
     "Career Advisor":
       "Offers personalized guidance on career paths based on your resume.",
     "Career Progression":

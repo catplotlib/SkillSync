@@ -24,3 +24,5 @@ You can start the application by using the command `npm start` from the project 
 
 The project is open-source and contributions are welcome. You can contribute by forking the repository and creating pull requests.
 
+
+
